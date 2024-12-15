@@ -1,69 +1,129 @@
-# Transforming ICU Care through Real-Time, AI-Powered Patient Monitoring
+# ICU Patient Monitoring System
 
 ## Overview
-This project focuses on revolutionizing Intensive Care Unit (ICU) care by leveraging **real-time monitoring** and **Artificial Intelligence (AI)** to enhance patient outcomes, streamline medical processes, and reduce critical response times. The system integrates advanced AI algorithms with real-time patient data streams to assist healthcare providers in making timely and informed decisions.
 
-## Objective
-The main objective of this project is to develop an AI-powered system that can monitor ICU patients continuously, detect early warning signs of deterioration, and provide actionable insights to medical staff. The project aims to bridge the gap between medical expertise and technological innovation, ensuring optimal patient care and reducing mortality rates in critical situations.
+The ICU Patient Monitoring System uses computer vision and deep learning to analyze patients' activities and facial expressions in real-time. The system identifies patient discomfort or irregular activities to provide insights for medical staff, improving patient care and safety in Intensive Care Units (ICUs).
 
-## Key Features
-1. **Real-Time Data Collection:**
-   - Continuous monitoring of vital signs such as heart rate, blood pressure, respiratory rate, oxygen levels, and temperature.
-   - Integration with medical-grade sensors and IoT devices.
+## Features
 
-2. **AI-Powered Analysis:**
-   - Predictive algorithms to identify anomalies and potential health risks.
-   - Early detection of conditions such as sepsis, cardiac arrest, and respiratory failure.
-   - Personalized patient trend analysis based on historical data.
+- **Activity Recognition**: Identifies patient movements such as walking, sitting, or lying down.
+- **Facial Expression Analysis**: Detects discomfort or distress from facial expressions.
+- **Real-time Processing**: Analyzes live video streams from cameras installed in ICUs.
+- **Alert System**: Sends alerts when irregular activities or discomfort are detected.
 
-3. **Alert System:**
-   - Intelligent alerting mechanism to notify medical staff of critical conditions via dashboard, SMS, or email.
-   - Prioritization of alerts based on severity to avoid alarm fatigue.
+## File Directory Structure
 
-4. **User-Friendly Dashboard:**
-   - Real-time visualization of patient data using dynamic charts and graphs.
-   - Intuitive interface for healthcare providers to review AI-generated recommendations.
+```
+ICU_patient_monitoring/
+├── data/
+│   ├── raw_data/                # Raw datasets downloaded from Kaggle
+│   ├── preprocessed_data/       # Preprocessed data for training
+├── models/
+│   ├── activity_model.h5        # Trained activity recognition model
+│   ├── facial_expression_model.h5 # Trained facial expression recognition model
+├── notebooks/
+│   ├── activity_training.ipynb  # Jupyter notebook for activity model training
+│   ├── expression_training.ipynb # Jupyter notebook for facial expression model training
+├── src/
+│   ├── activity_recognition.py  # Code for activity recognition
+│   ├── facial_expression.py     # Code for facial expression analysis
+│   ├── main.py                  # Main script for real-time monitoring
+├── utils/
+│   ├── data_preprocessing.py    # Data preprocessing functions
+│   ├── helper.py                # Helper functions
+├── requirements.txt             # Python dependencies
+├── README.md                    # Project description and setup guide
+```
 
-5. **Data Security and Compliance:**
-   - Adherence to medical data privacy standards (e.g., HIPAA, GDPR).
-   - Secure storage and encryption of patient data.
+## Dataset
 
-6. **Interoperability:**
-   - Seamless integration with existing hospital management systems (HMS) and electronic health records (EHRs).
+### Activity Recognition Dataset
+- **Source**: [Kaggle - Real-life Human Activity Dataset](https://www.kaggle.com/)
+- Includes multiple activity labels such as walking, sitting, and lying down.
 
-## Technical Stack
-- **Programming Languages:** Python, JavaScript
-- **AI/ML Frameworks:** TensorFlow, PyTorch, Scikit-learn
-- **Data Visualization:** Plotly, D3.js
-- **Backend:** Flask/Django, Node.js
-- **Frontend:** React.js, Bootstrap
-- **Database:** PostgreSQL, MongoDB
-- **IoT Integration:** MQTT, Bluetooth LE, Wi-Fi
-- **Deployment:** Docker, Kubernetes, AWS/GCP
+### Facial Expression Dataset
+- **Source**: [Kaggle - FER2013 Dataset](https://www.kaggle.com/)
+- Contains facial expression labels such as happy, sad, angry, and neutral.
 
-## Architecture
-1. **Data Acquisition:**
-   - IoT devices collect real-time data from ICU patients.
-   - Data is sent to a central server via secure protocols.
+## Prerequisites
 
-2. **Data Processing:**
-   - Preprocessing pipelines clean and normalize raw data for analysis.
-   - AI models analyze incoming data for trends, anomalies, and predictions.
+Ensure you have the following installed on your system:
 
-3. **Alerting and Visualization:**
-   - Identified risks are flagged and displayed on the dashboard.
-   - Alerts are triggered with details about patient condition and recommended actions.
+- Python 3.8+
+- Virtualenv
+- TensorFlow 2.x
+- OpenCV
+- NumPy
+- Pandas
+- Matplotlib
 
-4. **Feedback Loop:**
-   - Continuous model training with new data to improve accuracy over time.
+## Setup Instructions
 
-## Benefits
-- **Early Intervention:** Allows healthcare providers to act before a condition worsens, improving patient survival rates.
-- **Efficiency:** Reduces the workload of medical staff by automating routine monitoring tasks.
-- **Data-Driven Decisions:** Empowers clinicians with actionable insights based on real-time and historical data.
+### Step 1: Clone the Repository
 
-## Future Scope
-- Integration of wearable devices for outpatient monitoring.
-- Advanced predictive models for specific conditions (e.g., ARDS, stroke).
-- Support for telemedicine applications for remote ICUs.
-- Multi-language support for global scalability.
+```bash
+git clone https://github.com/nareshAiNexus/ICU_patient_monitoring.git
+cd ICU_patient_monitoring
+```
+
+### Step 2: Install Dependencies
+
+Create a virtual environment and install the required Python packages:
+
+```bash
+python -m venv venv
+source venv/bin/activate # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+### Step 3: Download Datasets
+
+1. Download the activity recognition and facial expression datasets from Kaggle.
+2. Place the datasets in the `data/raw_data/` directory.
+3. Run the preprocessing script to prepare the data for training:
+
+```bash
+python utils/data_preprocessing.py
+```
+
+### Step 4: Train the Models
+
+Use the Jupyter notebooks provided in the `notebooks/` directory to train the models:
+
+1. Launch Jupyter Notebook:
+   ```bash
+   jupyter notebook
+   ```
+2. Open `activity_training.ipynb` to train the activity recognition model.
+3. Open `expression_training.ipynb` to train the facial expression model.
+
+The trained models will be saved in the `models/` directory.
+
+### Step 5: Run the Monitoring System
+
+Use the `main.py` script to start real-time monitoring:
+
+```bash
+python src/main.py
+```
+
+## How to Use
+
+1. Connect the camera feed to the system.
+2. Run the monitoring system.
+3. Alerts will be displayed on the console or sent to a designated notification system.
+
+## Project Workflow
+
+1. **Data Collection**: Collect and preprocess activity and facial expression datasets.
+2. **Model Training**: Train deep learning models for activity recognition and facial expression analysis.
+3. **Real-Time Monitoring**: Integrate models with camera feed for real-time analysis.
+4. **Alert System**: Generate alerts for irregular activities or discomfort.
+
+## Contributing
+
+Contributions are welcome! Feel free to open issues or submit pull requests to improve this project.
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for more details.
